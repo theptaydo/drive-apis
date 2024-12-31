@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Nhập Liệu & Bảng Dữ Liệu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Form Nhập Liệu & Bảng Dữ Liệu</h1>
+
+    <!-- Form Nhập Liệu -->
+    <form id="dataEntryForm" class="mb-5">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="stt" class="form-label">STT</label>
+          <input type="number" class="form-control" id="stt" placeholder="Nhập STT" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="date" class="form-label">Ngày</label>
+          <input type="date" class="form-control" id="date" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="soChungTu" class="form-label">Số chứng từ</label>
+          <input type="text" class="form-control" id="soChungTu" placeholder="Nhập số chứng từ" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="nguoiPhuTrach" class="form-label">Người phụ trách</label>
+          <input type="text" class="form-control" id="nguoiPhuTrach" placeholder="Nhập tên người phụ trách" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="boPhan" class="form-label">Bộ phận</label>
+          <input type="text" class="form-control" id="boPhan" placeholder="Nhập bộ phận" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="hinhThuc" class="form-label">Hình thức</label>
+          <input type="text" class="form-control" id="hinhThuc" placeholder="Nhập hình thức" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="lyDo" class="form-label">Lý do chuyển đi</label>
+          <textarea class="form-control" id="lyDo" rows="1" placeholder="Nhập lý do" required></textarea>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="noiDen" class="form-label">Nơi đến</label>
+          <input type="text" class="form-control" id="noiDen" placeholder="Nhập nơi đến" required>
+        </div>
+      </div>
+      <button type="button" id="addData" class="btn btn-primary">Gửi Dữ Liệu</button>
+    </form>
+
+    <!-- Bảng Dữ Liệu -->
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>STT</th>
+            <th>Ngày</th>
+            <th>Số chứng từ</th>
+            <th>Người phụ trách</th>
+            <th>Bộ phận</th>
+            <th>Hình thức</th>
+            <th>Lý do</th>
+            <th>Nơi đến</th>
+          </tr>
+        </thead>
+        <tbody id="dataTable">
+          <!-- Dữ liệu sẽ được thêm tại đây -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // DOM Elements
+    const form = document.getElementById('dataEntryForm');
+    const addDataButton = document.getElementById('addData');
+    const dataTable = document.getElementById('dataTable');
+
+    // Add data to the table
+    addDataButton.addEventListener('click', () => {
+      // Get form values
+      const stt = document.getElementById('stt').value;
+      const date = document.getElementById('date').value;
+      const soChungTu = document.getElementById('soChungTu').value;
+      const nguoiPhuTrach = document.getElementById('nguoiPhuTrach').value;
+      const boPhan = document.getElementById('boPhan').value;
+      const hinhThuc = document.getElementById('hinhThuc').value;
+      const lyDo = document.getElementById('lyDo').value;
+      const noiDen = document.getElementById('noiDen').value;
+
+      // Add a new row to the table
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${stt}</td>
+        <td>${date}</td>
+        <td>${soChungTu}</td>
+        <td>${nguoiPhuTrach}</td>
+        <td>${boPhan}</td>
+        <td>${hinhThuc}</td>
+        <td>${lyDo}</td>
+        <td>${noiDen}</td>
+      `;
+      dataTable.appendChild(newRow);
+
+      // Clear the form
+      form.reset();
+    });
+  </script>
+</body>
+
+</html>
